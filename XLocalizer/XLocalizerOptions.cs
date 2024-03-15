@@ -13,30 +13,18 @@ namespace XLocalizer
         public string ResourcesPath { get; set; } = "LocalizationResources";
 
         /// <summary>
-        /// If the key string is not found in the DB, it will be inserted autoamtically to the DB.
+        /// If the key string is not found, it will be inserted autoamtically.
         /// default: false
         /// </summary>
         public bool AutoAddKeys { get; set; } = false;
-
-        /// <summary>
-        /// If the translation string is not found, it will be translated via registered translation servies.
-        /// default: false
-        /// Requires registering of one translation service at least. see <a href="https://docs.ziyad.info/en/XLocalizer/v1.0/translate-services.md">Registering Translation Services for Localization</a>
-        /// </summary>
-        public bool AutoTranslate { get; set; } = false;
-
+       
         /// <summary>
         /// ExpressMemory cache helps speeding up getting localized values from data stores.
         /// It is helpful to set to false during development mode and to true in production.
         /// Default value: true.
         /// </summary>
         public bool UseExpressMemoryCache { get; set; } = true;
-
-        /// <summary>
-        /// The culture name to translate from, if not set default request culture will be used.
-        /// </summary>
-        public string TranslateFromCulture { get; set; }
-
+ 
         /// <summary>
         /// When set to true the default culture (or source translation culture) will be localized (use case; when using CODE keys instead of texts.).
         /// Default value is false (default culture not localized).

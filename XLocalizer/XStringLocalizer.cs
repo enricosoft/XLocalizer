@@ -45,8 +45,7 @@ namespace XLocalizer
             _cache = cache;
             _translator = translatorFactory.Create();
             _provider = provider;
-            _options = options.Value;
-            _transCulture = options.Value.TranslateFromCulture ?? localizationOptions.Value.DefaultRequestCulture.Culture.Name;
+            _options = options.Value;            
             _logger = loggerFactory.CreateLogger<XStringLocalizer<TResource>>();
         }
 
@@ -118,20 +117,20 @@ namespace XLocalizer
             //           and don't do online translation if target == source culture,
             //           because online tranlsation services requires two different cultures.
             var availableInTranslate = false;
-            if (_options.AutoTranslate && !_targetEqualSource)
-            {
-                availableInTranslate = _translator.TryTranslate(_transCulture, _targetCulture, name, out value);
-                if (availableInTranslate)
-                {
-                    // Add to cache
-                    _cache.Set<TResource>(name, value);
-                }
-            }
+            //if (_options.AutoTranslate && !_targetEqualSource)
+            //{
+            //    availableInTranslate = _translator.TryTranslate(_transCulture, _targetCulture, name, out value);
+            //    if (availableInTranslate)
+            //    {
+            //        // Add to cache
+            //        _cache.Set<TResource>(name, value);
+            //    }
+            //}
 
             // Save to source file when AutoAdd is anebled and:
             // A:translation success or, B: AutoTranslate is off or, C: Target and source cultures are same
             // option C: useful when we use code keys to localize defatul culture as well
-            if (_options.AutoAddKeys && (availableInTranslate || !_options.AutoTranslate || _targetEqualSource))
+            if (_options.AutoAddKeys && availableInTranslate) /*|| !_options.AutoTranslate || _targetEqualSource)*/
             {
                 bool savedToResource = _provider.TrySetValue<TResource>(name, value ?? name, "Created by XLocalizer");
                 _logger.LogInformation($"Save resource to file, status: '{savedToResource}', key: '{name}', value: '{value ?? name}'");

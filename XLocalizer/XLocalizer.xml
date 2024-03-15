@@ -600,36 +600,17 @@
         </member>
         <member name="M:XLocalizer.DependencyInjection.AddXLocalizer``1(Microsoft.Extensions.DependencyInjection.IMvcBuilder)">
             <summary>
-            Register all XLocalization services...
+            Register all XLocalization services
             </summary>
             <typeparam name="TResource">Resource file type</typeparam>
-            <param name="builder"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XLocalizer.DependencyInjection.AddXLocalizer``2(Microsoft.Extensions.DependencyInjection.IMvcBuilder)">
-            <summary>
-            Register all XLocalization services...
-            </summary>
-            <typeparam name="TResource">Resource file type</typeparam>
-            <typeparam name="TTranslator">Translation service type</typeparam>
             <param name="builder"></param>
             <returns></returns>
         </member>
         <member name="M:XLocalizer.DependencyInjection.AddXLocalizer``1(Microsoft.Extensions.DependencyInjection.IMvcBuilder,System.Action{XLocalizer.XLocalizerOptions})">
             <summary>
-            Register all XLocalization services...
+            Register all XLocalization services
             </summary>
             <typeparam name="TResource">Resource file type</typeparam>
-            <param name="builder"></param>
-            <param name="options"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XLocalizer.DependencyInjection.AddXLocalizer``2(Microsoft.Extensions.DependencyInjection.IMvcBuilder,System.Action{XLocalizer.XLocalizerOptions})">
-            <summary>
-            Register all XLocalization services...
-            </summary>
-            <typeparam name="TResource">Resource file type</typeparam>
-            <typeparam name="TTranslator">Translation service type</typeparam>
             <param name="builder"></param>
             <param name="options"></param>
             <returns></returns>
@@ -1750,15 +1731,8 @@
         </member>
         <member name="P:XLocalizer.XLocalizerOptions.AutoAddKeys">
             <summary>
-            If the key string is not found in the DB, it will be inserted autoamtically to the DB.
+            If the key string is not found, it will be inserted autoamtically.
             default: false
-            </summary>
-        </member>
-        <member name="P:XLocalizer.XLocalizerOptions.AutoTranslate">
-            <summary>
-            If the translation string is not found, it will be translated via registered translation servies.
-            default: false
-            Requires registering of one translation service at least. see <a href="https://docs.ziyad.info/en/XLocalizer/v1.0/translate-services.md">Registering Translation Services for Localization</a>
             </summary>
         </member>
         <member name="P:XLocalizer.XLocalizerOptions.UseExpressMemoryCache">
@@ -1766,11 +1740,6 @@
             ExpressMemory cache helps speeding up getting localized values from data stores.
             It is helpful to set to false during development mode and to true in production.
             Default value: true.
-            </summary>
-        </member>
-        <member name="P:XLocalizer.XLocalizerOptions.TranslateFromCulture">
-            <summary>
-            The culture name to translate from, if not set default request culture will be used.
             </summary>
         </member>
         <member name="P:XLocalizer.XLocalizerOptions.LocalizeDefaultCulture">

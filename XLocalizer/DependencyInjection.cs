@@ -24,7 +24,7 @@ namespace XLocalizer
     public static class DependencyInjection
     {
         /// <summary>
-        /// Register all XLocalization services...
+        /// Register all XLocalization services
         /// </summary>
         /// <typeparam name="TResource">Resource file type</typeparam>
         /// <param name="builder"></param>
@@ -32,25 +32,11 @@ namespace XLocalizer
         public static IMvcBuilder AddXLocalizer<TResource>(this IMvcBuilder builder)
             where TResource : class
         {
-            return builder.AddXLocalizer<TResource, DummyTranslator>(o => o = new XLocalizerOptions());
+            return builder.AddXLocalizer<TResource>(o => o = new XLocalizerOptions());
         }
-
+             
         /// <summary>
-        /// Register all XLocalization services...
-        /// </summary>
-        /// <typeparam name="TResource">Resource file type</typeparam>
-        /// <typeparam name="TTranslator">Translation service type</typeparam>
-        /// <param name="builder"></param>
-        /// <returns></returns>
-        public static IMvcBuilder AddXLocalizer<TResource, TTranslator>(this IMvcBuilder builder)
-            where TResource : class
-            where TTranslator : ITranslator
-        {
-            return builder.AddXLocalizer<TResource, TTranslator>(o => o = new XLocalizerOptions());
-        }
-
-        /// <summary>
-        /// Register all XLocalization services...
+        /// Register all XLocalization services
         /// </summary>
         /// <typeparam name="TResource">Resource file type</typeparam>
         /// <param name="builder"></param>
@@ -58,21 +44,6 @@ namespace XLocalizer
         /// <returns></returns>
         public static IMvcBuilder AddXLocalizer<TResource>(this IMvcBuilder builder, Action<XLocalizerOptions> options)
             where TResource : class
-        {
-            return builder.AddXLocalizer<TResource, DummyTranslator>(options);
-        }
-
-        /// <summary>
-        /// Register all XLocalization services...
-        /// </summary>
-        /// <typeparam name="TResource">Resource file type</typeparam>
-        /// <typeparam name="TTranslator">Translation service type</typeparam>
-        /// <param name="builder"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public static IMvcBuilder AddXLocalizer<TResource, TTranslator>(this IMvcBuilder builder, Action<XLocalizerOptions> options)
-            where TResource : class
-            where TTranslator : ITranslator
         {
             // Configure XLocalizer options
             builder.Services.Configure<XLocalizerOptions>(options);
@@ -107,8 +78,7 @@ namespace XLocalizer
                 ops.DataAnnotationLocalizerProvider = (type, factory) => factory.Create(typeof(TResource));
             });
 
-            return builder.AddIdentityErrorsLocalization()
-                          .WithTranslationService<TTranslator>();
+            return builder.AddIdentityErrorsLocalization();
         }
     }
 }
